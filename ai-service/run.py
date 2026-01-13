@@ -1,13 +1,10 @@
 import asyncio
 import sys
 import uvicorn
-
 def main():
-    # Устанавливаем ProactorEventLoop принудительно для Windows
     if sys.platform == 'win32':
         asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
     
-    # Запускаем сервер программно
     uvicorn.run(
         "app.main:app", 
         host="127.0.0.1", 

@@ -1,10 +1,8 @@
 import asyncio
 import sys
-
 # Исправление для Windows + Playwright
 if sys.platform == 'win32':
     asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
-
 import httpx
 import os
 from pathlib import Path
@@ -13,13 +11,11 @@ from .schemas import Product, MatchResult, Source
 from .matcher import search_marketplace, match_by_image
 
 app = FastAPI(title='Product AI Service')
-
 CATALOG_FOLDER = "app/catalog_images"
 
 @app.post("/match", response_model=list[MatchResult])
 async def match_products(products: list[Product]):
     results = []
-    
     # Создаем асинхронный клиент для скачивания картинок
     async with httpx.AsyncClient() as client:
         for p in products:
