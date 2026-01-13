@@ -1,0 +1,5 @@
+{
+    "rust-analyzer.runnables.extraEnv": {
+        "CARGO_TARGET_DIR": "target_ra"
+    }
+}
